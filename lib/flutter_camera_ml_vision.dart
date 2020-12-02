@@ -11,8 +11,8 @@ import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_widgets/flutter_widgets.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:visibility_detector/visibility_detector.dart';
 
 export 'package:camera/camera.dart';
 
@@ -269,11 +269,13 @@ class CameraMlVisionState<T> extends State<CameraMlVision<T>>
     }
 
     Widget cameraPreview = AspectRatio(
-      aspectRatio: _cameraController.value.isInitialized ? _cameraController.value.aspectRatio : 1,
+      aspectRatio: _cameraController.value.isInitialized
+          ? _cameraController.value.aspectRatio
+          : 1,
       child: _isStreaming
           ? CameraPreview(
-        _cameraController,
-      )
+              _cameraController,
+            )
           : _getPicture(),
     );
 
